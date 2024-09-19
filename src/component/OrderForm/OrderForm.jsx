@@ -15,35 +15,40 @@ function OrderForm() {
     return name.length >= 5;
   };
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
 
-    const name = e.target.name.value;
-    const phone = e.target.phone.value;
-    const address = e.target.address.value;
-
-    if (!validateName(name)) {
-      alert("يرجى إدخال اسم يتكون من 5 أحرف على الأقل.");
-      return;
-    }
-
-    if (!validatePhoneNumber(phone)) {
-      alert("يرجى إدخال رقم هاتف صحيح.");
-      return;
-    }
-
     const formData = {
-      name,
-      phone,
-      address,
+      name: e.target.name.value,
+      phone: e.target.phone.value,
+      address: e.target.address.value,
       productName: data.product.name,
       productPrice: data.product.price,
       productSize: data.product.selectedSize,
       productColor: data.product.selectedColor,
     };
 
-    handleSubmit(formData);
+    try {
+      const response = await fetch('https://landing-page-backend-three.vercel.app/api/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log(result.message); // يمكنك إضافة رسالة تأكيد هنا
+      } else {
+        console.error('Failed to submit order');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
+
+
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white shadow-md rounded-lg">
