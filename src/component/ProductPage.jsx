@@ -27,7 +27,8 @@ const ProductPage = () => {
   };
 
   // حساب السعر القديم
-  const oldPrice = product.price + (product.price * product.discount) / 100;
+  const discountAmount = (product.price * product.discount) / 100; // حساب قيمة الخصم
+  const oldPrice = product.price + discountAmount; // السعر القديم
 
   // هوك لإظهار رسالة تشجيعية
   useEffect(() => {
@@ -95,18 +96,24 @@ const ProductPage = () => {
           <h2 className="text-md font-bold mb-2 text-gray-400">Brand: {product.Brand}</h2>
           <h2 className="text-2xl font-bold mb-2 text-gray-800">{product.name}</h2>
           {product.discount && (
+            <div className='flex gap-8'>
+
             <p className="text-lg mb-2 line-through text-gray-500">
               السعر القديم: <span className="font-semibold">{oldPrice} جنيه</span>
             </p>
+
+            {product.discount && (
+            <p className="text-red-600 mb-2">
+              Discount :<span className="font-semibold"> {product.discount}%</span>
+            </p>
+          )}
+            </div>
+
           )}
           <p className="text-lg mb-2">
             السعر الحالي: <span className="font-semibold">{product.price} جنيه</span>
           </p>
-          {product.discount && (
-            <p className="text-red-600 mb-2">
-              خصم: <span className="font-semibold">{product.discount} %</span>
-            </p>
-          )}
+
           <p className="text-gray-700 mb-4">{product.description}</p>
 
           {/* إضافة المقاسات */}

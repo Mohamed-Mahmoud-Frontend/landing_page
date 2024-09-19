@@ -22,9 +22,7 @@ function OrderForm() {
     handleSubmit(formData); // إرسال البيانات المعدلة
   };
 
-  if (state.succeeded) {
-    return <p className="text-green-600 font-bold">تم إرسال الطلب بنجاح!</p>;
-  }
+
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white shadow-md rounded-lg">
@@ -39,7 +37,7 @@ function OrderForm() {
       <form onSubmit={submitForm} className="space-y-4">
         {/* الاسم */}
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">الاسم</label>
+          <label htmlFor="name" className="block text-sm mb-2 font-medium text-gray-700">الاسم</label>
           <input
             id="name"
             type="text"
@@ -53,7 +51,7 @@ function OrderForm() {
 
         {/* رقم الهاتف */}
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700">رقم الهاتف</label>
+          <label htmlFor="phone" className="block text-sm mb-2 font-medium text-gray-700">رقم الهاتف</label>
           <input
             id="phone"
             type="tel"
@@ -67,7 +65,7 @@ function OrderForm() {
 
         {/* العنوان */}
         <div>
-          <label htmlFor="address" className="block text-sm font-medium text-gray-700">العنوان</label>
+          <label htmlFor="address" className="block text-sm mb-2 font-medium text-gray-700">العنوان</label>
           <input
             id="address"
             type="text"
@@ -87,6 +85,8 @@ function OrderForm() {
         >
           إرسال الطلب
         </button>
+        {state.succeeded ?  " تم ارسال الطلب بنجاح": "" }
+
       </form>
     </div>
   );
