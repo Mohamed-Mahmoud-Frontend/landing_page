@@ -20,7 +20,9 @@ const [message , setMessage] = useState('')
     e.preventDefault();
 
     const formData = {
+      id: uuidv4(),
       name: e.target.name.value,
+      date: new Date(),
       phone: e.target.phone.value,
       address: e.target.address.value,
       productName: data.product.name,
