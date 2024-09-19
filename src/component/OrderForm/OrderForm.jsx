@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useForm, ValidationError } from "@formspree/react";
 import { useState } from "react";
-
+import { v4 as uuidv4 } from 'uuid';
 function OrderForm() {
   const location = useLocation();
   const data = location.state;
@@ -20,6 +20,7 @@ const [message , setMessage] = useState('')
     e.preventDefault();
 
     const formData = {
+      id: uuidv4(), // توليد id عشوائي
       name: e.target.name.value,
       phone: e.target.phone.value,
       address: e.target.address.value,
@@ -39,20 +40,19 @@ const [message , setMessage] = useState('')
       });
 
       if (response.ok) {
-        setMessage("تم ارسال الطلب بنجاح")
-
+        setMessage("تم ارسال الطلب بنجاح");
         const result = await response.json();
         console.log(result.message);
       } else {
         console.error('Failed to submit order');
-        setMessage("")
+        setMessage("");
       }
     } catch (error) {
-        setMessage("")
-
       console.error('Error:', error);
+      setMessage("");
     }
   };
+
 
 
 
