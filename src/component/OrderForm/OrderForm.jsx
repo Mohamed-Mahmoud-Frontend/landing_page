@@ -85,7 +85,10 @@ function OrderForm() {
         >
           إرسال الطلب
         </button>
+        <p className='text-green-600 font-bold'>
+
         {state.succeeded ?  " تم ارسال الطلب بنجاح": "" }
+        </p>
 
       </form>
     </div>
