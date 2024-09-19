@@ -8,6 +8,7 @@ const NavBar = () => {
         <ul className="flex space-x-4">
           <li>
             <Link to="/" className="text-white hover:text-gray-300">Product</Link>
+            <Link to="/OrdersTable" className="text-white hover:text-gray-300">tableData</Link>
           </li>
           <li>
             {/* <Link to="/order" className="text-white hover:text-gray-300">Order</Link> */}

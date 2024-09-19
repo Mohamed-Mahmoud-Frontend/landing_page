@@ -1,11 +1,12 @@
 import { useLocation } from "react-router-dom";
 import { useForm, ValidationError } from "@formspree/react";
+import { useState } from "react";
 
 function OrderForm() {
   const location = useLocation();
   const data = location.state;
   const [state, handleSubmit] = useForm("xeojbozk");
-
+const [message , setMessage] = useState('')
   const validatePhoneNumber = (phone) => {
     const phoneRegex = /^[0-9]{10,14}$/;
     return phoneRegex.test(phone);
@@ -38,12 +39,17 @@ function OrderForm() {
       });
 
       if (response.ok) {
+        setMessage("تم ارسال الطلب بنجاح")
+
         const result = await response.json();
-        console.log(result.message); // يمكنك إضافة رسالة تأكيد هنا
+        console.log(result.message);
       } else {
         console.error('Failed to submit order');
+        setMessage("")
       }
     } catch (error) {
+        setMessage("")
+
       console.error('Error:', error);
     }
   };
@@ -133,7 +139,7 @@ function OrderForm() {
           إرسال الطلب
         </button>
         <p className="text-green-600 font-bold">
-          {state.succeeded ? " تم ارسال الطلب بنجاح" : ""}
+       {message}
         </p>
       </form>
     </div>
