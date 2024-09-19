@@ -18,9 +18,11 @@ const [message , setMessage] = useState('')
 
   const submitForm = async (e) => {
     e.preventDefault();
+    let lastId = 0; // متغير لتتبع آخر ID مستخدم
+    lastId += 1; // زيادة الرقم
 
     const formData = {
-      id: uuidv4(),
+      id: lastId,
       name: e.target.name.value,
       date: new Date(),
       phone: e.target.phone.value,
@@ -59,7 +61,7 @@ const [message , setMessage] = useState('')
 
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white shadow-md rounded-lg">
+    <div className="max-w-md mx-auto p-6 mt-10 bg-white shadow-md rounded-lg">
       <h2 className="text-2xl font-bold text-center mb-6">
         طلب {data.product.name}
       </h2>
