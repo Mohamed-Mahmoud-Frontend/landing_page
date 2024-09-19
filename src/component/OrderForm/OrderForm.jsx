@@ -20,7 +20,6 @@ const [message , setMessage] = useState('')
     e.preventDefault();
 
     const formData = {
-      id: uuidv4(), // توليد id عشوائي
       name: e.target.name.value,
       phone: e.target.phone.value,
       address: e.target.address.value,
@@ -52,6 +51,7 @@ const [message , setMessage] = useState('')
       setMessage("");
     }
   };
+
 
 
 
