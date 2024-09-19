@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import  ProductPage  from './component/ProductPage';
 import OrderForm from './component/OrderForm/OrderForm';
